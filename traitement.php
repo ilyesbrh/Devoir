@@ -7,23 +7,15 @@ $var=0;
 
 $bdd = new PDO('mysql:host=localhost;dbname=defi','root','') ;
 
-$reponse= $bdd->query('SELECT * FROM parents');
+$reponse= $bdd->query('SELECT COUNT(login) as bool FROM `parents` WHERE `login` = "$login" AND `pass` = "$mdp"');
 
-while ($donnees=$reponse->fetch())
+$donnees=$reponse->fetch();
+if (($donnees['bool']))
 {
-	
-	
-if (($donnees['login']==$login)&&($donnees['pass']==$mdp))
+	echo "<br>Bonjour ! :) <br>";
 
-	{
-		echo "<br>Bonjour ! :) <br>";
-		$var=1;
-	}
-}
-	
-if ($var==0)
-{
-		echo "Login ou mot de passe incorrect.";
+}else{
+	echo "Login ou mot de passe incorrect.";
 }
  
 $reponse->closeCursor();
