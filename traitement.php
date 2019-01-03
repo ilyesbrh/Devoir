@@ -10,7 +10,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=defi','root','') ;
 $reponse= $bdd->query('SELECT COUNT(login) as bool FROM `parents` WHERE `login` = "$login" AND `pass` = "$mdp"');
 
 $donnees=$reponse->fetch();
-if (($donnees['bool']))
+if (($donnees['bool']='1'))
 {
 	echo "<br>Bonjour ! :) <br>";
 
